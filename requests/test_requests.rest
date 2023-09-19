@@ -1,9 +1,0 @@
-GET http://localhost:3001/api/persons
-
-###
-POST http://localhost:3001/api/persons
-
-{ 
-    "name": "Jason Michels",
-    "number":"9984934893"
-}
