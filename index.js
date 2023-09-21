@@ -1,5 +1,5 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
 const cors = require('cors')
 const morgan = require('morgan')
 require('dotenv').config()
@@ -56,20 +56,20 @@ app.post('/api/persons/', (req, res, next) => {
 
     if (body.name === undefined) {
         return res.status(400).json({
-            error: "name missing"
+            error: 'name missing'
         })
     } else if (body.number === undefined) {
         return res.status(400).json({
-            error: "number missing"
+            error: 'number missing'
         })
     }
-    
+
     const person = new Person({
         name: body.name,
         number: body.number
     })
     person
-        .save().then(savedPerson => {
+        .save({}).then(savedPerson => {
             res.json(savedPerson)
         })
         .catch(error => next(error))
@@ -82,7 +82,7 @@ app.put('/api/persons/:id', (req, res, next) => {
         name, number
     }
 
-    Person.findByIdAndUpdate(req.params.id, person, { new: true })
+    Person.findByIdAndUpdate(req.params.id, person, { new: true, runValidators: true, context: 'query' })
         .then(updatedPerson => {
             res.json(updatedPerson)
         })
@@ -91,17 +91,12 @@ app.put('/api/persons/:id', (req, res, next) => {
 
 app.delete('/api/persons/:id', (req, res, next) => { // DELETE Person
     Person.findByIdAndRemove(req.params.id)
-        .then(result => {
+        .then(() => {
             res.status(204).end()
         })
         .catch(error => next(error))
 })
 
-app.get('/info', (req, res) => { // GET Info
-    const entries = persons.length;
-    const date = new Date()
-    res.send(`Phonebook has info for ${entries} people. </br> ${date}`)
-})
 
 app.use(unknownEndpoint)
 app.use(errorHandler)

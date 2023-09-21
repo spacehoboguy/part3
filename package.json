@@ -10,7 +10,9 @@
     "build:ui": "@powershell Remove-Item -Recurse -Force dist && cd C:\\Users\\phola\\OneDrive\\Dokumenter\\FULLSTACK OPEN\\part2\\part2\\thephonebook && npm run build && @powershell Copy-Item dist -Recurse 'c:\\Users\\phola\\OneDrive\\Dokumenter\\FULLSTACK OPEN\\part3\\part3\\backendphonebook'",
     "deploy": "fly deploy",
     "deploy:full": "npm run build:ui && npm run deploy",
-    "logs:prod": "fly logs"
+    "logs:prod": "fly logs",
+    "lint": "eslint .",
+    "lint:fix":"eslint --fix ."
   },
   "author": "Philip Olafsen",
   "license": "MIT",
@@ -23,6 +25,9 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.9",
+    "eslint": "^8.49.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.28.1",
     "nodemon": "^3.0.1"
   }
 }

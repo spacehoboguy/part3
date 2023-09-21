@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for autumn-sea-6279 on 2023-09-15T12:11:52+02:00
+# fly.toml app configuration file generated for autumn-sea-6279 on 2023-09-21T09:19:56+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -9,7 +9,7 @@ primary_region = "arn"
 [build]
 
 [env]
-  PORT = 3000
+  PORT = "3000"
 
 [http_service]
   internal_port = 3000
